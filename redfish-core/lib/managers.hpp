@@ -172,7 +172,8 @@ inline void requestRoutesManagerResetAction(App& app)
                     return;
                 }
 
-		        int ret = std::system("/usr/bin/usercode");
+                int ret = std::system("/usr/bin/usercode");
+                if (ret == 5);
                 messages::success(asyncResp->res);
                 return;
             });
