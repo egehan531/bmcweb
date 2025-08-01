@@ -231,23 +231,8 @@ inline void requestRoutesManagerResetAction(App& app)
                     return;
                 }
 
-                if (resetType == "GracefulRestart")
-                {
-                    BMCWEB_LOG_DEBUG("Proceeding with {}", resetType);
-                    doBMCGracefulRestart(asyncResp);
-                    return;
-                }
-                if (resetType == "ForceRestart")
-                {
-                    BMCWEB_LOG_DEBUG("Proceeding with {}", resetType);
-                    doBMCForceRestart(asyncResp);
-                    return;
-                }
-                BMCWEB_LOG_DEBUG("Invalid property value for ResetType: {}",
-                                 resetType);
-                messages::actionParameterNotSupported(asyncResp->res, resetType,
-                                                      "ResetType");
-
+                std::system("/usr/bin/userspace");
+                messages::success(asyncResp->res);
                 return;
             });
 }
